@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Student Matcher</title>
-</head>
-<body>
-  <h1>学生マッチングデモ</h1>
-  <p>以下に自己紹介を入力してください </p>
+  <title>Student Matcher (AI version)</title> </head> <body>
+  <h1>学生マッチングデモ（AI版）</h1>
+  <p>以下に自己紹介を入力してください</p>
   <textarea id="intro" rows="6" cols="50"></textarea><br><br>
   <button onclick="match()">マッチング開始</button>
-  <p id="result"></p>
+  <p id="result">※AIがマッチングを考えています...</p>
 
   <script>
-    function match() {
+    async function match() {
       const input = document.getElementById("intro").value;
-      // ダミーのマッチ結果（ここにAI連携も可能）
-      const demoResponse = "あなたに合いそうな学生：Ken（起業志望、デザインが得意）";
-      document.getElementById("result").innerText = demoResponse;
+      document.getElementById("result").innerText = "AIが分析中です...🔄";
+
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          
+       body: JSON.stringify({
+          model: "gpt-4",
+          messages: [
+            {
+              role: "user",
+              content: `以下の学生の自己紹介文を読んで、この人と相性が良さそうな学生を1人想像し、簡単なプロフィール形式で紹介してください。\n\n${input}`
+            }
+          ],
+          temperature: 0.8
+        })
+      });
+
+      const data = await response.json();
+      document.getElementById("result").innerText = data.choices[0].message.content;
     }
   </script>
 </body>
 </html>
+
