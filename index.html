@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Matcher</title>
+</head>
+<body>
+  <h1>学生マッチングデモ</h1>
+  <p>以下に自己紹介を入力してください </p>
+  <textarea id="intro" rows="6" cols="50"></textarea><br><br>
+  <button onclick="match()">マッチング開始</button>
+  <p id="result"></p>
+
+  <script>
+    function match() {
+      const input = document.getElementById("intro").value;
+      // ダミーのマッチ結果（ここにAI連携も可能）
+      const demoResponse = "あなたに合いそうな学生：Ken（起業志望、デザインが得意）";
+      document.getElementById("result").innerText = demoResponse;
+    }
+  </script>
+</body>
+</html>
