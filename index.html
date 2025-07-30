@@ -7,6 +7,37 @@
   <textarea id="intro" rows="6" cols="50"></textarea><br><br>
   <button onclick="match()">マッチング開始</button>
   <p id="result">※AIがマッチングを考えています...</p>
+  <style>
+  body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: #f0f4f8;
+    padding: 50px;
+  }
+  textarea {
+    width: 60%;
+    font-size: 16px;
+    padding: 10px;
+  }
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  #result {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #333;
+  }
+</style>
 
   <script>
     async function match() {
@@ -23,7 +54,7 @@
           messages: [
             {
               role: "user",
-              content: `以下の学生の自己紹介文を読んで、この人と相性が良さそうな学生を1人想像し、簡単なプロフィール形式で紹介してください。\n\n${input}`
+              content: `以下の学生の自己紹介文を読んで、この人と相性が良さそうな学生を1人想像し、簡単なプロフィール形式で紹介してください。また、なぜ相性がいいのかも簡単に説明してください。\n\n${input}`
             }
           ],
           temperature: 0.8
